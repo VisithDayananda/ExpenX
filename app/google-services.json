@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "323962428989",
+    "firebase_url": "https://expenx-e3bb3.firebaseio.com",
+    "project_id": "expenx-e3bb3",
+    "storage_bucket": "expenx-e3bb3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323962428989:android:de8c7411d4c6fb8a",
+        "android_client_info": {
+          "package_name": "com.expenx.expenx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323962428989-tr4ehf3mnv6k5g1svhq2s4ellkn24fee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPH6qz__PNXy5iTLipwVnYoIz6Vhx8kSk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

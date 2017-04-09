@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">ExpenX</string>
+    <string name="e">E</string>
+    <string name="circle_of_e">Circle of E</string>
+    <string name="don_t_have_an_account">Don\'t have an account? Create one</string>
+    <string name="all_rights_reserved_2017_savick">All Rights Reserved © 2017 SAVICK</string>
+    <string name="forgot_your_password">Forgot your Password?</string>
+    <string name="expenx">ExpenX</string>
+    <string name="login_with_google">LOGIN WITH GOOGLE</string>
+    <string name="or_via_email">___________________or via Email___________________</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
 </resources>
