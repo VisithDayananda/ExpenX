@@ -1,6 +1,7 @@
 package com.expenx.expenx.activity;
 
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +17,7 @@ import android.widget.ImageView;
 
 import com.expenx.expenx.R;
 import com.expenx.expenx.core.MessageOutput;
-import com.expenx.expenx.model.Income;
+import com.expenx.expenx.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,7 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class  LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     ImageView mCircleAroundE;
 
@@ -37,9 +38,10 @@ public class  LoginActivity extends AppCompatActivity {
 
     Button mLoginButton;
 
-    private static FirebaseAuth mAuth;
+    public static FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference databaseReference;
+    public static User user = null;
 
     private String TAG = "expenxtag";
 
@@ -56,6 +58,8 @@ public class  LoginActivity extends AppCompatActivity {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    startActivity(new Intent(LoginActivity.this,ExpenxActivity.class));
+                    LoginActivity.this.finish();
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -84,7 +88,7 @@ public class  LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                signIn(mEmailText.getText().toString().trim(),mPasswordText.getText().toString().trim());
+                signIn(mEmailText.getText().toString().trim(), mPasswordText.getText().toString().trim());
             }
         });
     }
@@ -109,7 +113,7 @@ public class  LoginActivity extends AppCompatActivity {
 
         String email = mEmailText.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mEmailText.setError("Required.");
+            MessageOutput.showSnackbarLongDuration(LoginActivity.this, "Email required..!");
             valid = false;
         } else {
             mEmailText.setError(null);
@@ -117,7 +121,7 @@ public class  LoginActivity extends AppCompatActivity {
 
         String password = mPasswordText.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mPasswordText.setError("Required.");
+            MessageOutput.showSnackbarLongDuration(LoginActivity.this, "Password required..!");
             valid = false;
         } else {
             mPasswordText.setError(null);
@@ -127,45 +131,45 @@ public class  LoginActivity extends AppCompatActivity {
     }
 
     private void signIn(String email, String password) {
-        System.out.println("signIn:" + email);
         if (!validateForm()) {
             return;
         }
 
-        MessageOutput.showProgressDialog(LoginActivity.this,"Logging in...");
+        MessageOutput.showProgressDialog(LoginActivity.this, "Logging in...");
 
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.d(TAG,"signInWithEmail:failed");
-                            Log.d(TAG, "youFAIL" ,task.getException());
-                        }
+                        try {
+                            if (!task.isSuccessful()) {
+                                MessageOutput.showSnackbarLongDuration(LoginActivity.this, task.getException().getMessage());
+                            }
 
-                        if(task.isSuccessful()){
-                            try {
+                            if (task.isSuccessful()) {
+
+
                                 databaseReference.child("user").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        Log.d(TAG,"pushId "+mAuth.getCurrentUser().getUid());
-                                        Log.d(TAG,"cc "+dataSnapshot.getKey());
-                                        Log.d(TAG,"fname "+dataSnapshot.child("fname").getValue(String.class));
-                                        Log.d(TAG,"lname "+dataSnapshot.child("lname").getValue(String.class));
 
-                                        MessageOutput.showSnackbarLongDuration(LoginActivity.this,"Login Success");
+                                        user = dataSnapshot.getValue(User.class);
+                                        user.userUID = dataSnapshot.getKey();
+
+                                        startActivity(new Intent(LoginActivity.this,ExpenxActivity.class));
+                                        LoginActivity.this.finish();
                                     }
 
                                     @Override
                                     public void onCancelled(DatabaseError databaseError) {
-
+                                        MessageOutput.showSnackbarLongDuration(LoginActivity.this, databaseError.getMessage());
                                     }
                                 });
-                            }catch (NullPointerException e){
-
                             }
+                        }catch(NullPointerException e) {
+                            MessageOutput.showSnackbarLongDuration(LoginActivity.this, "Something went wrong...!");
                         }
-                     MessageOutput.dismissProgressDialog();
+                        MessageOutput.dismissProgressDialog();
                     }
                 });
 
