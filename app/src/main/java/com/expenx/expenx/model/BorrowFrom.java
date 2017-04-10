@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by skaveesh on 2017-04-10.
  */
 
-public class borrowFrom {
+public class BorrowFrom {
 
     public String pushId;
     public double amount;
@@ -21,7 +21,7 @@ public class borrowFrom {
     public String paymentMethod;
     public String refCheckNo;
 
-    public borrowFrom(double amount, String borrowedFrom, Timestamp borrowedDate, Timestamp dueDate, String description, String paymentMethod, String refCheckNo) {
+    public BorrowFrom(double amount, String borrowedFrom, Timestamp borrowedDate, Timestamp dueDate, String description, String paymentMethod, String refCheckNo) {
         this.amount = amount;
         this.borrowedFrom = borrowedFrom;
         this.borrowedDate = borrowedDate;
@@ -31,7 +31,7 @@ public class borrowFrom {
         this.refCheckNo = refCheckNo;
     }
 
-    public borrowFrom() {
+    public BorrowFrom() {
     }
 
     @Exclude
