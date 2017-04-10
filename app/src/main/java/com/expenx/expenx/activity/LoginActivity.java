@@ -13,16 +13,15 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.expenx.expenx.R;
-import com.expenx.expenx.core.ProgressDialogBox;
+import com.expenx.expenx.core.MessageOutput;
+import com.expenx.expenx.model.Income;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,9 +37,9 @@ public class  LoginActivity extends AppCompatActivity {
 
     Button mLoginButton;
 
-    private FirebaseAuth mAuth;
+    private static FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference mDatabase;
+    private DatabaseReference databaseReference;
 
     private String TAG = "expenxtag";
 
@@ -65,7 +64,7 @@ public class  LoginActivity extends AppCompatActivity {
         };
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         RotateAnimation rotate = new RotateAnimation(0, 90, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rotate.setRepeatCount(Animation.INFINITE);
@@ -133,18 +132,12 @@ public class  LoginActivity extends AppCompatActivity {
             return;
         }
 
-        ProgressDialogBox.showProgressDialog(LoginActivity.this,"Logging in...");
+        MessageOutput.showProgressDialog(LoginActivity.this,"Logging in...");
 
-        // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d(TAG,"signInWithEmail:onComplete:" + task.isSuccessful());
-
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.d(TAG,"signInWithEmail:failed");
                             Log.d(TAG, "youFAIL" ,task.getException());
@@ -152,13 +145,15 @@ public class  LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             try {
-                                mDatabase.child("users").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                databaseReference.child("user").child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        Log.d(TAG,"uid "+mAuth.getCurrentUser().getUid());
+                                        Log.d(TAG,"pushId "+mAuth.getCurrentUser().getUid());
                                         Log.d(TAG,"cc "+dataSnapshot.getKey());
                                         Log.d(TAG,"fname "+dataSnapshot.child("fname").getValue(String.class));
                                         Log.d(TAG,"lname "+dataSnapshot.child("lname").getValue(String.class));
+
+                                        MessageOutput.showSnackbarLongDuration(LoginActivity.this,"Login Success");
                                     }
 
                                     @Override
@@ -170,13 +165,9 @@ public class  LoginActivity extends AppCompatActivity {
 
                             }
                         }
-
-                        // [START_EXCLUDE]
-                        if (!task.isSuccessful()) {
-//                            mStatusTextView.setText(R.string.auth_failed);
-                        }
-                     ProgressDialogBox.dismissProgressDialog();
+                     MessageOutput.dismissProgressDialog();
                     }
                 });
+
     }
 }
