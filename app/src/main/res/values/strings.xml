@@ -19,4 +19,8 @@
     <string name="action_settings">Settings</string>
     <string name="nav_user_name_str" />
     <string name="nav_user_email_str" />
+
+    <string name="register">REGISTER</string>
+    <string name="lastName">Last Name</string>
+    <string name="firstName">First Name</string>
 </resources>
