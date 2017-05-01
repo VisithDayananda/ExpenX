@@ -20,10 +20,24 @@
         </activity>
         <activity
             android:name=".activity.RegisterActivity"
-            android:screenOrientation="portrait"
-            android:label="Register"/>
-        <activity android:name=".activity.ExpenxActivity"
-            android:label="ExpenX"/>
+            android:label="Register"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ExpenxActivity"
+            android:label="ExpenX"
+            android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.IncomeActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.ExpenseActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.DebtActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.ChartViewActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.CalendarViewActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.NotesActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.ForecastActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.LoanCalculatorActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.CurrencyConverterActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.ReminderActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.SettingsActivity" android:theme="@style/BaseAppTheme" />
+        <activity android:name=".activity.AboutActivity" android:theme="@style/BaseAppTheme" />
     </application>
 
 </manifest>
