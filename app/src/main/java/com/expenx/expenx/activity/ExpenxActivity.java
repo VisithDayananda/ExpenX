@@ -43,7 +43,7 @@ import java.util.Calendar;
 public class ExpenxActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static User user = null;
+    public User user = null;
 
     public DatabaseReference databaseReference;
 
@@ -134,7 +134,6 @@ public class ExpenxActivity extends AppCompatActivity
 
                 ((TextView) findViewById(R.id.nav_textViewUserName)).setText(user.fname + " " + user.lname);
                 ((TextView) findViewById(R.id.nav_textViewUserEmail)).setText(sharedPreferences.getString("email", null));
-
 
                 storageRef.child(user.profileImage).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
@@ -366,4 +365,6 @@ public class ExpenxActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

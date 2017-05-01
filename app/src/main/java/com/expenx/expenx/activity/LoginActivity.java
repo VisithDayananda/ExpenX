@@ -59,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences = null;
     SharedPreferences.Editor editor = null;
 
+    private static boolean isExpenxActivityLaunched = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +83,10 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("email", user.getEmail());
                     editor.apply();
 
-                    startActivity(new Intent(LoginActivity.this, ExpenxActivity.class));
+                    if(!isExpenxActivityLaunched) {
+                        startActivity(new Intent(LoginActivity.this, ExpenxActivity.class));
+                        isExpenxActivityLaunched = true;
+                    }
                     LoginActivity.this.finish();
                 } else {
                     // User is signed out
@@ -269,7 +274,10 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("email", mAuth.getCurrentUser().getEmail());
                                 editor.apply();
 
-                                startActivity(new Intent(LoginActivity.this, ExpenxActivity.class));
+                                if(!isExpenxActivityLaunched) {
+                                    startActivity(new Intent(LoginActivity.this, ExpenxActivity.class));
+                                    isExpenxActivityLaunched = true;
+                                }
                                 LoginActivity.this.finish();
                             }
                         } catch (NullPointerException e) {
