@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/LoginTheme">
             <intent-filter>
@@ -21,7 +21,7 @@
 
         <activity android:name=".activity.ExpenxActivity" android:theme="@style/BaseAppTheme" android:label="ExpenX" android:screenOrientation="portrait"/>
 
-        <activity android:name=".activity.LoginActivity" android:theme="@style/BaseAppThemeSecondary" android:label="Register" android:screenOrientation="portrait" />
+        <activity android:name=".activity.RegisterActivity" android:theme="@style/BaseAppThemeSecondary" android:label="Register" android:screenOrientation="portrait" />
         <activity android:name=".activity.IncomeActivity" android:theme="@style/BaseAppThemeSecondary" android:label="Income" android:screenOrientation="portrait" />
         <activity android:name=".activity.ExpenseActivity" android:theme="@style/BaseAppThemeSecondary" android:label="Expense" android:screenOrientation="portrait" />
         <activity android:name=".activity.DebtActivity" android:theme="@style/BaseAppThemeSecondary" android:label="Debt" android:screenOrientation="portrait" />
