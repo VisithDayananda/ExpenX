@@ -7,7 +7,7 @@
         android:right="1dp"
         android:top="1dp"
         android:bottom="1dp"/>
-
-    <solid android:color="@color/colorSettingsButton"/>
+    <corners android:radius="10dp"/>
+    <solid android:color="@color/colorListViewBackground"/>
 
 </shape>

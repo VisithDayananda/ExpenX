@@ -1,9 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context="com.expenx.expenx.activity.ChartViewActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.Spinner.Underlined"/>
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@id/spinner1"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                style="@style/Widget.AppCompat.Spinner.Underlined" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_weight="10"/>
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="2">
+            <Button
+                android:id="@+id/lineChart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_normal"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="@string/line_chart"
+                android:textColor="@color/colorgreyText"/>
+            <Button
+                android:id="@+id/barChart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_normal"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="@string/bar_chart"
+                android:textColor="@color/colorgreyText"/>
+            <Button
+                android:id="@+id/ringChart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_normal"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:text="@string/ring_chart"
+                android:textColor="@color/colorgreyText"/>
+        </LinearLayout>    
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</RelativeLayout>

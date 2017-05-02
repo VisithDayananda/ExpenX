@@ -23,4 +23,32 @@
     <string name="register">REGISTER</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
+
+    <string name="forecasted_expense">Forecasted Total Expense</string>
+    <string name="forecasted_next_month">For Next Month</string>
+    <string name="title_last_month">Last Month Expense</string>
+    <string name="category_travel">Travel</string>
+    <string name="category_bills">Bills</string>
+    <string name="category_food">Food</string>
+    <string name="category_medical">Medical</string>
+    <string name="category_other">Other</string>
+    <string name="reminder_text">Remind Me to Add Income/Expense </string>
+    <string name="frequency_text">Frequency</string>
+    <string name="to_remind">When to Remind</string>
+    <string name="change_password">Change Password</string>
+    <string name="default_currency">Set Default Currency</string>
+    <string name="log_out">Logout</string>
+    <string name="line_chart">Line Chart</string>
+    <string name="bar_chart">Bar Chart</string>
+    <string name="ring_chart">Ring Chart</string>
+    <string name="borrow_from">Borrow From</string>
+    <string name="lend_to">Lend To</string>
+    <string name="debt_txt">Debt</string>
+    <string name="credit_txt">Credit</string>
+    <string name="balance_txt">Balance</string>
+    <string name="add_note">Add Note</string>
+    <string name="develop_string">This application is developed by</string>
+    <string name="errors_string">If you come across any errors please feel free to email us.</string>
+    <string name="allRightsReserved">All Rights Reserved \u00A9 2017 SAVICK</string>
+    <string name="projectDescription">This is a University(UCD) group project completed under MAD module to accomplish Android programming skills</string>
 </resources>
